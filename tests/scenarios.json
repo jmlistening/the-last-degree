@@ -1,0 +1,78 @@
+[
+  {
+    "size": 3,
+    "tiles": [
+      "home",
+      "road",
+      "water",
+      "park",
+      "lot",
+      "water",
+      "factory",
+      "road",
+      "hospital"
+    ],
+    "base": 38,
+    "duration": 150,
+    "time": 0,
+    "steps": 24,
+    "wind": 0
+  },
+  {
+    "size": 3,
+    "tiles": [
+      "home",
+      "road",
+      "water",
+      "park",
+      "lot",
+      "water",
+      "factory",
+      "road",
+      "hospital"
+    ],
+    "base": 38,
+    "duration": 150,
+    "time": 0,
+    "steps": 24,
+    "wind": 0,
+    "facilities": [
+      { "kind": "tower", "cell": 4, "built": 0, "wind": 0 },
+      { "kind": "fan", "cell": 3, "built": 0, "wind": 1 }
+    ]
+  },
+  {
+    "size": 3,
+    "tiles": [
+      "home",
+      "road",
+      "water",
+      "park",
+      "lot",
+      "water",
+      "factory",
+      "road",
+      "hospital"
+    ],
+    "base": 40,
+    "duration": 200,
+    "time": 8,
+    "steps": 52,
+    "wind": 0,
+    "temp": [38, 41, 35, 38, 39, 35, 45, 38, 42],
+    "rain_until": 24,
+    "facilities": [
+      { "kind": "tower", "cell": 4, "built": 2, "wind": 0 },
+      { "kind": "mist", "cell": 7, "built": 5, "wind": 0 },
+      { "kind": "tree", "cell": 3, "built": 0, "wind": 0 }
+    ],
+    "events": [
+      { "kind": "shift", "start": 9, "end": 18, "center": 4, "wind": 3 },
+      { "kind": "surge", "start": 10, "end": 17, "center": 0, "wind": 0 },
+      { "kind": "outage", "start": 12, "end": 21, "center": 4, "wind": 0 },
+      { "kind": "fault", "start": 23, "end": 29, "center": 7, "wind": 0 },
+      { "kind": "shower", "start": 32, "end": 39, "center": 4, "wind": 0 },
+      { "kind": "overload", "start": 35, "end": 45, "center": 6, "wind": 0 }
+    ]
+  }
+]

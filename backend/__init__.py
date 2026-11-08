@@ -1,0 +1,1 @@
+"""Heatwave Crisis reference simulation."""

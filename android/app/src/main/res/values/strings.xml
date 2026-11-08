@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">最后一度</string>
+    <string name="title_activity_main">最后一度</string>
+    <string name="package_name">com.lastdegree.heatwave</string>
+    <string name="custom_url_scheme">com.lastdegree.heatwave</string>
+</resources>

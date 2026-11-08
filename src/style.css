@@ -1,0 +1,738 @@
+* {
+  box-sizing: border-box;
+}
+:root {
+  font-family: Inter, "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+  color: #ecf2ea;
+  background: #101a20;
+  font-synthesis: none;
+  --muted: #9eb0ae;
+  --line: #a7d0c029;
+  --panel: #132229eb;
+  --mint: #9aebbc;
+  --amber: #ffc17b;
+}
+body {
+  margin: 0;
+}
+button,
+input {
+  font: inherit;
+}
+button {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #18292eea;
+  color: inherit;
+  min-height: 43px;
+  padding: 0.55rem 0.85rem;
+  cursor: pointer;
+}
+button:hover,
+button[aria-pressed="true"],
+button.chosen {
+  border-color: var(--mint);
+  background: #254438;
+}
+button:disabled {
+  opacity: 0.48;
+  cursor: default;
+}
+button:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 3px;
+}
+main {
+  height: 100dvh;
+  min-height: 350px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.world,
+.city,
+.atmosphere {
+  position: absolute;
+  inset: 0;
+}
+.world {
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at 60% 50%,
+    #6d7062,
+    #263b3f 57%,
+    #101a20 95%
+  );
+}
+.city canvas {
+  display: block;
+  touch-action: none;
+}
+.city[data-unavailable="true"]:after {
+  content: "当前设备的 WebGL 不可用，可使用网格继续行动";
+  position: absolute;
+  top: 45%;
+  width: 100%;
+  text-align: center;
+  color: var(--muted);
+  padding: 0 20px;
+}
+.playing .city {
+  top: 40px;
+  bottom: 76px;
+}
+.backdrop .city {
+  left: 29%;
+  top: 1%;
+  right: -9%;
+  bottom: 1%;
+  pointer-events: none;
+}
+.atmosphere {
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 46%, #101a205d);
+}
+.backdrop .atmosphere {
+  background:
+    linear-gradient(
+      90deg,
+      #101a20 0%,
+      #101a20f4 18%,
+      #101a2084 42%,
+      transparent 65%
+    ),
+    linear-gradient(0deg, #101a20, transparent 19%);
+}
+.hot .atmosphere {
+  box-shadow: inset 0 0 80px #ff863a29;
+  animation: heat 4s ease-in-out infinite alternate;
+}
+@keyframes heat {
+  to {
+    opacity: 0.45;
+  }
+}
+.top,
+.hud,
+footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 5vw;
+  gap: 12px;
+}
+.top {
+  top: 0;
+}
+.wordmark {
+  letter-spacing: 0.13em;
+  font-size: 0.81rem;
+  font-weight: 800;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+.wordmark i {
+  color: var(--mint);
+  font-size: 1.45rem;
+  font-style: normal;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.top-right {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.signal {
+  font-size: 0.72rem;
+  color: var(--mint);
+  margin-right: 0.65rem;
+}
+footer {
+  bottom: 0;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  font-size: 0.62rem;
+  border-top: 1px solid var(--line);
+}
+.hero {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-46%);
+  left: 8vw;
+  max-width: 570px;
+}
+.eyebrow {
+  color: var(--mint);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+}
+.eyebrow b {
+  display: inline-block;
+  background: var(--mint);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 6px;
+  box-shadow: 0 0 12px var(--mint);
+}
+h1,
+h2,
+p {
+  margin: 0;
+}
+h1 {
+  font-size: clamp(3.25rem, 8vw, 7rem);
+  line-height: 0.99;
+  letter-spacing: -0.09em;
+  margin: 22px 0 20px;
+}
+h1 span {
+  display: block;
+  font-size: 0.54em;
+  letter-spacing: 0.16em;
+  color: var(--amber);
+  margin-top: 0.21em;
+}
+.hero p,
+.dialog p,
+.dialog li {
+  line-height: 1.7;
+  color: var(--muted);
+}
+.primary {
+  background: var(--mint);
+  color: #10261c;
+  border-color: var(--mint);
+  font-weight: 850;
+}
+.primary:hover {
+  background: #c4ffda;
+}
+.hero .primary {
+  min-width: 205px;
+  margin: 24px 0;
+}
+.primary strong {
+  margin-left: 35px;
+}
+.hero-meta {
+  display: flex;
+  gap: 22px;
+  color: var(--mint);
+  font-size: 0.86rem;
+}
+.hero-meta small {
+  color: var(--muted);
+  display: block;
+  font-size: 0.65rem;
+  padding-top: 5px;
+}
+.level-screen {
+  position: absolute;
+  inset: 82px 7vw 0;
+  overflow: auto;
+  padding: 8px 2px 30px;
+}
+.level-screen .eyebrow {
+  margin: 15px 0 8px;
+}
+.level-screen h2,
+.dialog h2 {
+  font-size: clamp(1.65rem, 4vw, 2.45rem);
+  margin-bottom: 16px;
+}
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  max-width: 1100px;
+}
+.level-card {
+  min-height: 148px;
+  text-align: left;
+  padding: 14px;
+  background: linear-gradient(145deg, #23383dec, #122329f0);
+}
+.level-card small {
+  display: flex;
+  justify-content: space-between;
+  color: var(--mint);
+  font-size: 0.65rem;
+}
+.level-card b {
+  display: block;
+  margin: 10px 0 6px;
+}
+.level-card p {
+  font-size: 0.75rem;
+  color: var(--muted);
+  min-height: 2.5em;
+}
+.stars {
+  color: var(--amber);
+  margin-top: 9px;
+  letter-spacing: 0.15em;
+}
+.stars.result {
+  font-size: 2.4rem;
+  animation: pop 0.5s both;
+}
+@keyframes pop {
+  from {
+    transform: scale(0.65);
+    opacity: 0;
+  }
+}
+.hud {
+  top: 0;
+  padding: 12px 18px;
+  background: linear-gradient(#101a20f0, #101a2070, transparent);
+  z-index: 1;
+}
+.mission,
+.metrics > div {
+  display: grid;
+  gap: 3px;
+}
+.mission small,
+.metrics small,
+.objective small {
+  color: var(--muted);
+  font-size: 0.66rem;
+}
+.mission b {
+  font-size: 1.15rem;
+}
+.metrics {
+  display: flex;
+  gap: clamp(10px, 3.2vw, 44px);
+  padding: 6px 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.metrics b {
+  font-size: 1.15rem;
+  white-space: nowrap;
+}
+.metrics sup {
+  font-size: 0.65em;
+  margin-left: 2px;
+}
+.green {
+  color: var(--mint);
+}
+.amber {
+  color: var(--amber);
+}
+.danger {
+  color: #ff977a;
+}
+.objective,
+.controls,
+.inspect,
+.legend,
+.dock,
+.grid-panel,
+.toast,
+.warning {
+  position: absolute;
+}
+.objective,
+.inspect,
+.dock,
+.grid-panel,
+.toast,
+.warning,
+.legend {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+}
+.objective {
+  top: 88px;
+  left: 18px;
+  width: 218px;
+  padding: 12px;
+  display: grid;
+  gap: 6px;
+}
+.objective b {
+  font-size: 0.95rem;
+}
+.objective p {
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.progress {
+  height: 4px;
+  background: #395054;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.progress i {
+  display: block;
+  height: 100%;
+  background: var(--mint);
+  transition: width 0.3s;
+}
+.controls {
+  right: 18px;
+  top: 88px;
+  display: grid;
+  gap: 6px;
+}
+.controls button {
+  font-size: 0.76rem;
+}
+.warning,
+.toast {
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 9px 15px;
+  font-size: 0.83rem;
+}
+.warning {
+  top: 85px;
+  color: var(--amber);
+  border-color: #f1ab5d80;
+}
+.toast {
+  bottom: 143px;
+  color: var(--mint);
+  pointer-events: none;
+}
+.legend {
+  right: 18px;
+  bottom: 130px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  font-size: 0.65rem;
+}
+.legend i {
+  width: 76px;
+  height: 5px;
+  background: linear-gradient(90deg, #3dcbb4, #b7d64e, #ff6b41);
+}
+.inspect {
+  bottom: 131px;
+  left: 18px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 7px 4px 11px;
+  font-size: 0.8rem;
+}
+.inspect span {
+  color: var(--amber);
+}
+.inspect button {
+  padding: 0 8px;
+  min-height: 34px;
+}
+.dock {
+  left: 50%;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  padding: 9px;
+  max-width: calc(100% - 24px);
+  width: max-content;
+}
+.dock-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  padding: 0 4px 7px;
+  color: var(--muted);
+}
+.dock-label b {
+  color: #eef3ec;
+  white-space: nowrap;
+}
+.dock-label button {
+  min-height: 30px;
+  font-size: 0.7rem;
+  padding: 3px 7px;
+}
+.gear {
+  display: flex;
+  gap: 6px;
+}
+.gear button {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-width: 88px;
+  white-space: nowrap;
+  padding: 5px 7px;
+}
+.gear i {
+  font-style: normal;
+  color: var(--mint);
+  font-size: 1.12rem;
+}
+.gear span {
+  font-size: 0.72rem;
+}
+.gear small {
+  font-size: 0.68rem;
+  color: var(--amber);
+}
+.grid-panel {
+  z-index: 2;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  gap: 2px;
+  padding: 7px;
+}
+.grid-panel button {
+  width: clamp(30px, 5.7vw, 43px);
+  height: clamp(30px, 5.7vw, 43px);
+  min-height: 0;
+  padding: 0;
+}
+.scrim {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: #0a1016b0;
+  z-index: 4;
+  backdrop-filter: blur(5px);
+}
+.dialog {
+  position: relative;
+  background: #17282e;
+  border: 1px solid #a7d0c05e;
+  border-radius: 16px;
+  width: min(100%, 460px);
+  max-height: 95%;
+  overflow: auto;
+  padding: 25px;
+  box-shadow: 0 22px 75px #0009;
+}
+.dialog p,
+.dialog ol {
+  font-size: 0.91rem;
+  margin-bottom: 14px;
+}
+.dialog ol {
+  padding-left: 19px;
+}
+.dialog button {
+  margin: 4px 5px 2px 0;
+}
+.dialog .close {
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  min-height: 36px;
+}
+.setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 13px 0;
+  color: var(--muted);
+}
+input {
+  accent-color: var(--mint);
+}
+@media (max-width: 760px) {
+  .level-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .top,
+  footer {
+    padding: 12px 14px;
+  }
+  .signal {
+    display: none;
+  }
+  .hero {
+    left: 6vw;
+  }
+  .backdrop .city {
+    left: 0;
+    right: -24%;
+    top: -30%;
+    bottom: -3%;
+  }
+  .backdrop .atmosphere {
+    background:
+      linear-gradient(90deg, #101a20f4, #101a2038 85%),
+      linear-gradient(0deg, #101a20 4%, transparent 80%);
+  }
+  .hud {
+    padding: 7px;
+    gap: 5px;
+  }
+  .mission small {
+    display: none;
+  }
+  .mission b {
+    font-size: 0.72rem;
+  }
+  .metrics {
+    gap: 9px;
+    padding: 4px 6px;
+  }
+  .metrics b {
+    font-size: 0.85rem;
+  }
+  .metrics small {
+    font-size: 0.6rem;
+  }
+  .top-right {
+    gap: 4px;
+  }
+  .hud button {
+    min-height: 38px;
+    min-width: 34px;
+    padding: 4px;
+  }
+  .objective {
+    top: 62px;
+    left: 7px;
+    width: 150px;
+    padding: 6px;
+    gap: 3px;
+  }
+  .objective b {
+    font-size: 0.78rem;
+  }
+  .objective p {
+    font-size: 0.65rem;
+  }
+  .controls {
+    right: 7px;
+    top: 62px;
+  }
+  .controls button {
+    min-height: 37px;
+    padding: 5px 7px;
+  }
+  .warning {
+    top: 166px;
+  }
+  .playing .city {
+    top: 85px;
+    bottom: 104px;
+  }
+  .gear button {
+    min-width: 0;
+    flex: 1;
+    padding: 5px 4px;
+  }
+  .gear span {
+    font-size: 0.66rem;
+  }
+  .dock {
+    bottom: max(7px, env(safe-area-inset-bottom));
+    padding: 6px;
+  }
+  .dock-label {
+    font-size: 0.65rem;
+  }
+  .inspect {
+    bottom: 109px;
+    left: 7px;
+  }
+  .legend {
+    right: 7px;
+    bottom: 109px;
+  }
+  .toast {
+    bottom: 155px;
+  }
+}
+@media (max-height: 530px) {
+  .playing .city {
+    top: 12px;
+    bottom: 40px;
+  }
+  .hero h1 {
+    font-size: 3.6rem;
+  }
+  .hero {
+    transform: translateY(-42%);
+  }
+  .hero .primary {
+    margin: 10px 0;
+  }
+  .hero-meta,
+  footer {
+    display: none;
+  }
+  .grid-panel button {
+    width: 29px;
+    height: 29px;
+  }
+  .level-screen {
+    inset: 55px 5vw 0;
+  }
+  .level-screen h2 {
+    margin-bottom: 6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+.warning small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.67rem;
+  margin-top: 3px;
+}
+.warning {
+  max-width: calc(100% - 20px);
+  white-space: normal;
+}
+@media (max-width: 760px) and (min-height: 531px) {
+  .grid-panel button {
+    width: clamp(30px, calc(12.5vw - 5.5px), 44px);
+    height: clamp(30px, calc(12.5vw - 5.5px), 44px);
+  }
+  .controls button {
+    min-height: 42px;
+  }
+}
+.top,
+.hud {
+  top: env(safe-area-inset-top, 0px);
+}
+.level-screen,
+.objective,
+.controls,
+.warning {
+  margin-top: env(safe-area-inset-top, 0px);
+}
+.grid-panel .grid-close {
+  grid-column: 1/-1;
+  width: 100%;
+  min-height: 37px;
+  margin-top: 3px;
+  font-size: 0.75rem;
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "The Last Degree",
+  "version": "1.0.0",
+  "identifier": "com.lastdegree.heatwave",
+  "build": {
+    "beforeDevCommand": "pnpm dev --port 5173 --strictPort",
+    "devUrl": "http://127.0.0.1:5173",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "最后一度：热浪危机",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 740,
+        "minHeight": 490
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'"
+    }
+  },
+  "bundle": { "active": true, "targets": ["nsis"], "icon": ["icons/icon.ico"] }
+}

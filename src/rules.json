@@ -1,0 +1,22 @@
+{
+  "terrain": {
+    "road": 0.5,
+    "lot": 0,
+    "home": 1.5,
+    "office": 2.6,
+    "factory": 5,
+    "hospital": 1,
+    "park": -1.5,
+    "water": -3.5
+  },
+  "gear": {
+    "tree": { "cost": 12, "radius": 2, "power": 2.5 },
+    "tower": { "cost": 34, "radius": 3, "power": 5.6 },
+    "fan": { "cost": 16, "radius": 2, "power": 0 },
+    "mist": { "cost": 21, "radius": 3, "power": 6.5, "life": 42 },
+    "rain": { "cost": 25, "radius": 0, "power": 4, "life": 24, "cooldown": 66 }
+  },
+  "relax": 0.16,
+  "diffuse": 0.12,
+  "fanBoost": 0.85
+}
