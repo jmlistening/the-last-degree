@@ -1,10 +1,10 @@
 <div align="center">
 
 <h1>最后一度：热浪危机</h1>
-<p><strong>在热浪压垮城市之前，把三个街区一起拉回安全线。</strong></p>
+<p><strong>在八张微缩城市地图中部署降温设施，应对热浪。</strong></p>
 <p><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a></p>
 <p><img src="docs/images/demo.gif" width="100%" alt="新手小镇实录，依次部署冷却塔，查看热力图并撤离"></p>
-<p><sub>实际运行画面 · 地块部署 → 温度下降 → 三个街区达标 → 提前撤离</sub></p>
+<p><sub>Edge 实玩片段剪辑 · 部署冷却塔 → 温度下降 → 三星撤离</sub></p>
 
 </div>
 
@@ -67,7 +67,7 @@ pnpm dev
 - `backend/` 提供 FastAPI、Pydantic 和 NumPy 参考计算。
 - `android/` 与 `src-tauri/` 分别包含 Capacitor 和 Tauri 2 工程。
 - `public/` 包含 PWA 清单和原创图标，构建时生成预缓存 Service Worker。
-- 模型用于游戏平衡与策略对比，适用范围是本游戏定义的离散规则。
+- 温度模型为游戏规则服务。跨语言回归测试比较相同输入下 TypeScript 和 NumPy 的计算结果。
 
 ## 测试与 Python 接口
 
@@ -114,7 +114,7 @@ Pop-Location
 
 ## GitHub Pages、iPhone 与离线
 
-生产构建采用相对路径，可部署在仓库子路径。静态托管只需发布 `dist/`。仓库的测试、打包和 Pages 工作流均为手动触发。当前仓库为私有，演示随源码提供。
+生产构建采用相对路径，可部署在仓库子路径。静态托管只需发布 `dist/`。仓库的测试、打包和 Pages 工作流均为手动触发，演示动图随源码提供。
 
 iPhone 用 Safari 打开 HTTPS 游戏地址，在分享菜单选择「添加到主屏幕」。首次在线进入并完成缓存后，同一地址支持离线打开。离线重载已在 Edge 手机视口验证，真实 iPhone 的安装体验待验证。
 

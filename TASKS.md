@@ -9,4 +9,5 @@
 - [ ] Windows NSIS 安装包。当前环境缺少 Rust/Cargo 和 MSVC
 - [ ] Android 调试 APK。当前环境缺少 Android SDK，Gradle 分发包下载超时
 - [ ] 真实 Android 和 iPhone 验收、实机帧率测量
-- [ ] 用户授权后再推送仓库或发布博客
+- [x] 上传 GitHub 作品仓库与双语演示
+- [ ] 发布 CSDN 文章
