@@ -57,7 +57,7 @@ pnpm build
 pnpm preview
 ```
 
-Open [the local preview](http://127.0.0.1:4173/). On Windows, double-click **Launch Game.cmd** after building to start on port 4188 with Python 3, and double-click **Stop.bat** to stop the same launcher.
+Open [the local preview](http://127.0.0.1:4173/). On Windows, double-click **Start.bat** after building to launch the game on port 4188 with Python 3. Double-click **Stop.bat** to stop the local server.
 
 Choose **开始游戏**, then **新手小镇**. Hover a buildable tile to preview the area, click to build, or tap twice on a touchscreen. The bottom bar controls pause, heat map, rotation, speed and the placement grid.
 
